@@ -33,7 +33,7 @@ public class RestEmployeeControl {
     @GetMapping(path = "/with-params")
     public List<Employee> getAllEmployeeWithParams(@RequestParam(name="firstName",required = false)String firstName,
                                                    @RequestParam(name="lastName",required = false)String lastName){
-
+        System.out.println("deneme");
         return employeeService.getAllEmployeeWithParams(firstName,lastName);
     }
 
