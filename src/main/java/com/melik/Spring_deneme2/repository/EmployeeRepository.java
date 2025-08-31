@@ -4,6 +4,7 @@ import com.melik.Spring_deneme2.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -36,5 +37,30 @@ public class EmployeeRepository {
 
         }
         return findEmployee;
+    }
+
+    public List<Employee> getAllEmployeesListWithParams(String firstName,String lastName){
+            List<Employee> employeeListWithParams = new ArrayList<>();
+            if (firstName == null && lastName == null){
+                return employeeList;
+            }
+            for (Employee employee : employeeList){
+                if (firstName!=null && lastName!=null){
+                    if(employee.getFirstName().equalsIgnoreCase(firstName) &&  employee.getLastName().equalsIgnoreCase(lastName)){
+                        employeeListWithParams.add(employee);
+                    }
+                }
+                if (firstName!=null && lastName==null){
+                    if(employee.getFirstName().equalsIgnoreCase(firstName)){
+                        employeeListWithParams.add(employee);
+                    }
+            }
+                if (firstName==null && lastName!=null){
+                    if(employee.getLastName().equalsIgnoreCase(lastName)){
+                        employeeListWithParams.add(employee);
+                    }
+                }
+            }
+            return employeeListWithParams;
     }
 }

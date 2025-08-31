@@ -10,26 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest/api")
+@RequestMapping("/rest/api/employee")
 public class RestEmployeeControl {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/employee-list")
+    @GetMapping("/list")
     public List<Employee> getAllEmployeesList(){
         return employeeService.getAllEmployeesList();
     }
 
-    // ID'ye göre çalışan getir
-    @GetMapping("/employee-list/id/{id}")
+    @GetMapping("/list/id/{id}")
     public Employee getEmployeeById(@PathVariable String id) {
         return employeeService.getEmployeeById(id);
     }
 
-    // İsme göre çalışan getir
-    @GetMapping("/employee-list/name/{firstName}")
+    @GetMapping("/list/name/{firstName}")
     public Employee getEmployeeByName(@PathVariable String firstName) {
         return employeeService.getEmployeeByName(firstName);
+    }
+
+    @GetMapping(path = "/with-params")
+    public List<Employee> getAllEmployeeWithParams(@RequestParam(name="firstName",required = false)String firstName,
+                                                   @RequestParam(name="lastName",required = false)String lastName){
+
+        return employeeService.getAllEmployeeWithParams(firstName,lastName);
     }
 
 
