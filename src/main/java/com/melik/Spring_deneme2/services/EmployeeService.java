@@ -29,4 +29,8 @@ public class EmployeeService {
         return employeeRepository.getAllEmployeesListWithParams(firstName,lastName);
 
     }
+
+    public Employee saveEmployee(Employee employee) {
+        return employeeRepository.saveEmployee(employee);
+    }
 }
