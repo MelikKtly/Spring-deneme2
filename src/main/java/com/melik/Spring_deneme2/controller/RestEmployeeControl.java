@@ -1,6 +1,7 @@
 package com.melik.Spring_deneme2.controller;
 
 import com.melik.Spring_deneme2.model.Employee;
+import com.melik.Spring_deneme2.model.UpdateEmployeeRequest;
 import com.melik.Spring_deneme2.repository.EmployeeRepository;
 import com.melik.Spring_deneme2.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,11 @@ public class RestEmployeeControl {
     @DeleteMapping(path = "/delete-employee/{id}")
     public boolean deleteEmployee(@PathVariable(name = "id") String id) {
         return employeeService.deleteEmployee(id);
+    }
+
+    @PutMapping("/update-employee/{id}")
+    public Employee updateEmployee(@PathVariable(name = "id")String id, @RequestBody UpdateEmployeeRequest Request) {
+        return employeeService.updateEmployee(id, Request);
     }
 
 }
